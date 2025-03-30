@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 51, 51, 51;
+  --background-start-rgb: 250, 250, 250;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 18, 18, 18;
+    --background-end-rgb: 24, 24, 24;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* Updated gradient button styles */
+.bg-gradient-to-r {
+  background-size: 200% auto;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Red gradient theme */
+.from-orange-500.via-green-400.to-blue-500 {
+  background-image: linear-gradient(
+    to right,
+    #FF1E1E 0%,
+    #FF4242 50%,
+    #FF6363 100%
+  );
+}
+
+/* Hover effect */
+.from-orange-500.via-green-400.to-blue-500:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 30, 30, 0.2);
+} 
