@@ -3,6 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChatBubbleLeftRightIcon, RocketLaunchIcon, ArrowPathIcon } from '@heroicons/react/24/outline'
 
 const skills = [
@@ -61,42 +62,85 @@ const featuredServices = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative overflow-hidden">
       {/* Hero Section */}
-      <section className="flex-grow pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-3xl sm:text-4xl text-gray-700 dark:text-gray-300 mb-6">
-              Software Engineer | AI & Web Developer
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-10">
-              I help businesses and startups build scalable, intelligent software — from AI agents to custom web applications.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link
-                href="/projects"
-                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-orange-500 via-green-400 to-blue-500 hover:from-orange-600 hover:via-green-500 hover:to-blue-600 transition-all duration-200 glow-effect"
-              >
-                View My Work
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-gray-300 dark:border-gray-700 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-600 transition-all duration-200 glow-effect"
-              >
-                Let's Work Together
-              </Link>
-            </div>
-          </motion.div>
+      <section className="flex-grow pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative bg-[#FFF5EB]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <h1 className="text-5xl sm:text-7xl font-black leading-none text-black">
+                AI APPS DEVELOPMENT
+              </h1>
+              
+              <div className="inline-block">
+                <div className="bg-[#FFD93D] border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] px-8 py-3">
+                  <p className="text-xl sm:text-2xl font-bold">
+                    Building the future with AI magic & web wizardry
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-6 mt-8">
+                <Link
+                  href="/projects"
+                  className="neo-brutalist-red text-black text-lg font-bold px-8 py-4"
+                >
+                  View My Work →
+                </Link>
+                <Link
+                  href="/contact"
+                  className="neo-brutalist-green text-black text-lg font-bold px-8 py-4"
+                >
+                  Let's Work Together
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="relative aspect-square max-w-[500px] mx-auto">
+                <div className="absolute top-0 right-0 w-24 h-24 neo-brutalist-blue transform rotate-12 z-10">
+                  <RocketLaunchIcon className="w-12 h-12 m-6 text-black" />
+                </div>
+                
+                <div className="absolute -top-4 right-[20%] neo-brutalist-red px-6 py-3 transform -rotate-6 z-20">
+                  <span className="text-2xl font-black text-black">Xavier</span>
+                </div>
+
+                <div className="relative w-full h-full neo-brutalist-white p-4">
+                  <div className="relative w-full h-full overflow-hidden">
+                    <Image
+                      src="/pepe-wizard.png"
+                      alt="Xavier - AI Developer"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                <div className="absolute bottom-4 -left-4 neo-brutalist-green p-4 transform rotate-6 z-10">
+                  <ChatBubbleLeftRightIcon className="w-12 h-12 text-black" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Featured Projects Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -104,12 +148,18 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex justify-between items-center mb-12">
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                Featured Projects
-              </h2>
+              <motion.div
+                initial={{ rotate: -2 }}
+                animate={{ rotate: -2 }}
+                className="neo-brutalist-red inline-block px-6 py-2 transform"
+              >
+                <h2 className="text-3xl font-black">
+                  Featured Projects
+                </h2>
+              </motion.div>
               <Link 
                 href="/projects"
-                className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-2"
+                className="neo-brutalist-button bg-[#B4C7FF]"
               >
                 View all projects →
               </Link>
@@ -121,19 +171,19 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  className="neo-brutalist-card bg-white p-8"
                 >
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-bold mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  <p className="text-gray-700 mb-4">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map(tag => (
                       <span 
                         key={tag}
-                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm text-gray-600 dark:text-gray-300"
+                        className="px-3 py-1 bg-[#FFD93D] border-2 border-black text-sm font-bold"
                       >
                         {tag}
                       </span>
@@ -147,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* Featured Services Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#FFF5EB] relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -155,12 +205,18 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex justify-between items-center mb-12">
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                Services
-              </h2>
+              <motion.div
+                initial={{ rotate: 2 }}
+                animate={{ rotate: 2 }}
+                className="neo-brutalist-green inline-block px-6 py-2 transform"
+              >
+                <h2 className="text-3xl font-black">
+                  Services
+                </h2>
+              </motion.div>
               <Link 
                 href="/services"
-                className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-2"
+                className="neo-brutalist-button bg-[#7FE0AA]"
               >
                 View all services →
               </Link>
@@ -172,13 +228,13 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  className="neo-brutalist-card bg-white p-8"
                 >
-                  <service.icon className={`w-8 h-8 ${service.iconColor} mb-4`} />
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">
+                  <service.icon className="w-12 h-12 mb-6" />
+                  <h3 className="text-xl font-bold mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-gray-700">
                     {service.description}
                   </p>
                 </motion.div>
@@ -189,16 +245,22 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white relative">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">
-              Technical Expertise
-            </h3>
+            <motion.div
+              initial={{ rotate: -1 }}
+              animate={{ rotate: -1 }}
+              className="neo-brutalist-blue inline-block px-6 py-2 transform mb-12"
+            >
+              <h3 className="text-3xl font-black">
+                Technical Powers
+              </h3>
+            </motion.div>
             <div className="flex flex-wrap justify-center gap-4">
               {skills.map((skill, index) => (
                 <motion.div
@@ -206,9 +268,11 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="neo-brutalist-card bg-[#FFD93D] px-6 py-3"
                 >
-                  <span className="text-gray-700 dark:text-gray-300">{skill}</span>
+                  <span className="font-bold">
+                    {skill}
+                  </span>
                 </motion.div>
               ))}
             </div>

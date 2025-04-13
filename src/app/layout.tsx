@@ -1,17 +1,13 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import type { Metadata } from 'next'
-import Navigation from '../components/Navigation'
-import Footer from '../components/Footer'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+const poppins = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'hyperxav | Freelance Software Engineer',
-  description: 'I design and build AI-powered applications, machine learning tools, and fullstack web platforms for forward-thinking clients.',
+export const metadata = {
+  title: 'hyperxav',
+  description: 'Software Engineer | AI & Web Developer',
 }
 
 export default function RootLayout({
@@ -20,13 +16,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white antialiased">
-        <Navigation />
-        <main className="flex-grow">
+    <html lang="en">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+      </head>
+      <body className={`${poppins.className} bg-white dark:bg-black text-primary-900 dark:text-white`}>
+        <div className="relative min-h-screen">
+          <Navigation />
           {children}
-        </main>
-        <Footer />
+          <Footer />
+        </div>
       </body>
     </html>
   )
