@@ -124,7 +124,7 @@ export default function Home() {
                       src="/pepe-wizard.png"
                       alt="Xavier - AI Developer"
                       fill
-                      className="object-cover"
+                      className="object-cover spin-hover"
                       priority
                     />
                   </div>

@@ -44,13 +44,13 @@ export default function Books() {
             transition={{ duration: 0.2 }}
           >
             <h1 className="text-4xl md:text-5xl font-black text-black">
-              SALAM Trilogy
+              SURVIVRE A LA MEGAMACHINE
             </h1>
           </motion.div>
           
           <div className="neo-brutalist-white p-8 max-w-3xl mx-auto">
             <p className="text-xl text-black">
-              SALAM is a trilogy that explores the evolution of life, humanity, and intelligence through the lenses of thermodynamics, information theory, and philosophical inquiry. Across three volumes, it traces how energy and information shaped the cosmos — and how humans, as conscious agents, can respond to entropy with meaning, action, and transcendence.
+              Survivre à la Mégamachine (SALAM) is a trilogy that explores the evolution of life, humanity, and intelligence through the lenses of thermodynamics, information theory, and philosophical inquiry. Across three volumes, it traces how energy and information shaped the cosmos — and how humans, as conscious agents, can respond to entropy with meaning, action, and transcendence.
             </p>
           </div>
         </motion.div>
@@ -69,12 +69,24 @@ export default function Books() {
                   <BookOpenIcon className="w-8 h-8 text-black" />
                 </div>
                 
-                <h3 className="text-sm font-bold text-gray-600 mb-2">
-                  {book.volume}
-                </h3>
-                <h2 className="text-2xl font-black text-black mb-4">
-                  {book.title}
-                </h2>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-600 mb-2">
+                      {book.volume}
+                    </h3>
+                    <h2 className="text-2xl font-black text-black">
+                      {book.title}
+                    </h2>
+                  </div>
+                  {book.volume === 'Volume I' && (
+                    <div className="neo-brutalist-blue px-4 py-2 transform rotate-[2deg]">
+                      <span className="text-sm font-black text-black whitespace-nowrap">
+                        Release: June 2025
+                      </span>
+                    </div>
+                  )}
+                </div>
+
                 <div className="prose prose-lg">
                   {book.description.split('\n\n').map((paragraph, i) => (
                     <p key={i} className="text-gray-600 mb-4">
@@ -82,6 +94,14 @@ export default function Books() {
                     </p>
                   ))}
                 </div>
+                
+                {book.volume === 'Volume I' && (
+                  <div className="mt-6">
+                    <button className="neo-brutalist-red w-full py-3 text-lg font-black text-black hover:scale-[1.02] transition-transform">
+                      Pre-order Now →
+                    </button>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
