@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 
 const socialLinks = [
   {
@@ -42,17 +43,52 @@ const socialLinks = [
   }
 ]
 
+interface FormStatus {
+  submitting: boolean;
+  submitted: boolean;
+  error: string | null;
+}
+
 export default function Contact() {
+  useEffect(() => {
+    emailjs.init("PPt4TbSLIKlLE4nfR")
+  }, [])
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   })
+  
+  const [status, setStatus] = useState<FormStatus>({
+    submitting: false,
+    submitted: false,
+    error: null
+  })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement form submission logic
-    console.log('Form submitted:', formData)
+    setStatus({ submitting: true, submitted: false, error: null })
+
+    try {
+      await emailjs.send(
+        'service_s99h7wv',
+        'template_rh7foud',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'xavier.sassi@gmail.com'
+        },
+        'PPt4TbSLIKlLE4nfR'
+      )
+
+      setStatus({ submitting: false, submitted: true, error: null })
+      setFormData({ name: '', email: '', message: '' })
+    } catch (error) {
+      console.error('Failed to send email:', error)
+      setStatus({ submitting: false, submitted: false, error: 'Failed to send message. Please try again.' })
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -107,6 +143,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-[#FF6B6B] bg-white"
+                    disabled={status.submitting}
                   />
                 </div>
 
@@ -122,6 +159,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-[#FF6B6B] bg-white"
+                    disabled={status.submitting}
                   />
                 </div>
 
@@ -137,14 +175,28 @@ export default function Contact() {
                     required
                     rows={6}
                     className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-[#FF6B6B] bg-white"
+                    disabled={status.submitting}
                   />
                 </div>
 
+                {status.error && (
+                  <div className="neo-brutalist-red p-4">
+                    <p className="text-black font-bold">{status.error}</p>
+                  </div>
+                )}
+
+                {status.submitted && (
+                  <div className="neo-brutalist-green p-4">
+                    <p className="text-black font-bold">Message sent successfully! I'll get back to you soon.</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="neo-brutalist-red w-full text-black text-lg font-black px-8 py-4"
+                  className="neo-brutalist-red w-full text-black text-lg font-black px-8 py-4 disabled:opacity-50"
+                  disabled={status.submitting}
                 >
-                  Send Message →
+                  {status.submitting ? 'Sending...' : 'Send Message →'}
                 </button>
               </form>
             </motion.div>
