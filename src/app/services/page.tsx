@@ -16,6 +16,7 @@ const services = [
     title: "AI Agent Development",
     description: "Design and deploy intelligent agents powered by LLMs.",
     icon: RocketLaunchIcon,
+    iconBg: "neo-brutalist-yellow",
     features: [
       "Task planning and execution with memory",
       "Tool usage (e.g., web search, API calls)"
@@ -26,6 +27,7 @@ const services = [
     subtitle: "(Web & WhatsApp)",
     description: "Conversational assistants tailored to your business logic.",
     icon: ChatBubbleLeftRightIcon,
+    iconBg: "neo-brutalist-blue",
     features: [
       "Human-like conversation flow",
       "API and database integration",
@@ -37,6 +39,7 @@ const services = [
     subtitle: "with AI",
     description: "Replace repetitive tasks with intelligent automation.",
     icon: ArrowPathIcon,
+    iconBg: "neo-brutalist-green",
     features: [
       "Email classification and routing",
       "Report generation and form parsing",
@@ -47,6 +50,7 @@ const services = [
     title: "AI-Powered Internal Tools",
     description: "Custom web applications powered by LLMs.",
     icon: CogIcon,
+    iconBg: "neo-brutalist-red",
     features: [
       "Text summarizers and generators",
       "Document processing and parsing"
@@ -56,6 +60,7 @@ const services = [
     title: "AI MVP & SaaS Prototyping",
     description: "From idea to AI-powered MVP in days",
     icon: RocketLaunchIcon,
+    iconBg: "neo-brutalist-yellow",
     features: [
       "Full-stack product development",
       "Authentication, billing, and user dashboards"
@@ -65,6 +70,7 @@ const services = [
     title: "Custom AI Interfaces",
     description: "Build intuitive frontends for AI-powered tools.",
     icon: CodeBracketIcon,
+    iconBg: "neo-brutalist-blue",
     features: [
       "React + Tailwind development",
       "State handling with API integration"
@@ -98,10 +104,10 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="neo-brutalist-white p-8"
+              className="neo-brutalist-white p-8 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-200"
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="neo-brutalist-yellow p-2">
+                <div className={`${service.iconBg} p-3 transform rotate-[5deg]`}>
                   <service.icon className="w-8 h-8 text-black" />
                 </div>
                 <div>
@@ -116,7 +122,7 @@ export default function ServicesPage() {
                 {service.description}
               </p>
 
-              <ul className="space-y-3">
+              <ul className="space-y-3 mb-6">
                 {service.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-2 text-black">
                     <span className="text-[#FF6B6B] font-bold">•</span>
@@ -128,7 +134,7 @@ export default function ServicesPage() {
               <div className="mt-6">
                 <Link
                   href="/contact"
-                  className="neo-brutalist-button bg-[#B4C7FF]"
+                  className="neo-brutalist-button bg-[#B4C7FF] hover:scale-[1.02] transition-transform"
                 >
                   Learn more →
                 </Link>
