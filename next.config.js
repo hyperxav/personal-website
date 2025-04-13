@@ -4,7 +4,13 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['localhost'],
-    unoptimized: true
+    unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
 }
 
